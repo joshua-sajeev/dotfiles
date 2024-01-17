@@ -1,0 +1,8 @@
+require("joshua.lazy")
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader><leader>", vim.cmd.bnext)
+vim.keymap.set("n", "<leader>x", vim.cmd.tabclose)
+vim.keymap.set("n", "<leader>m", "<cmd>LspInfo<cr>")
+vim.keymap.set("n", "<leader>bq", vim.cmd.bw)
+vim.keymap.set("v","J",":m '>+1<CR>gv=gv")
+vim.keymap.set("v","K",":m '>-2<CR>gv=gv")
