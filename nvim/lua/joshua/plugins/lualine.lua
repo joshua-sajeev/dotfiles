@@ -9,11 +9,10 @@ return{
         require("lualine").setup({
             sections = {
             lualine_a = {'mode'},
-            lualine_b = {'branch', 'diff', 'diagnostics'},
             lualine_c = {'buffers'},
-            lualine_x = {'ctime'},
+            lualine_x = {'cdate'},
             lualine_y = {'progress'},
-            lualine_z = {'cdate'},
+            lualine_z = {'ctime'},
         },
         })
     end
