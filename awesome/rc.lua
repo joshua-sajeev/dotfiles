@@ -515,7 +515,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.with_shell("picom --config ./.config/picom/p.conf")
 awful.spawn.with_shell("w")
 awful.spawn.with_shell("wireplumber")
-awful.spawn.with_shell("polybar")
+--awful.spawn.with_shell("polybar")
 awful.spawn.with_shell("sxhkd")
 
 --Gaps

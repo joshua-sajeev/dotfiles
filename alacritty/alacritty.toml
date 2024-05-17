@@ -1,5 +1,6 @@
 [window]
 opacity = 0.8
+blur = true
 [font]
 size = 12
 [font.normal]
@@ -35,3 +36,8 @@ blue    = '#1BA6FA'
 magenta = '#A578EA'
 cyan    = '#73FBF1'
 white   = '#FEFEF8'
+
+[keyboard]
+bindings = [
+ { key = "Return", mods = "Super|Shift", action = "CreateNewWindow" },
+]

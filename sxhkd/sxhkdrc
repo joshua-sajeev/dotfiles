@@ -12,3 +12,11 @@ super + shift + w
 super + g
 	flameshot gui
 
+super + shift + p
+	polybar
+
+super + shift + v
+	pavucontrol
+
+super + l
+	qpdfview
