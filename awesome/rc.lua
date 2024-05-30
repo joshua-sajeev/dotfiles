@@ -218,7 +218,9 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help, {description="show help", group="awesome"}),
     awful.key({}, "#232",function() awful.spawn("brightnessctl set 10%-") end ),
-    awful.key({}, "#233",function() awful.spawn("brightnessctl set +10%") end ),
+    awful.key({}, "#233",function() awful.spawn("brightnessctl set 10%+") end ),
+    awful.key({}, "#122",function() awful.spawn("brightnessctl set +10%") end ),
+    awful.key({}, "#123",function() awful.spawn("brightnessctl set +10%") end ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 

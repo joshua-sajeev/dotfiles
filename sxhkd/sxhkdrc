@@ -18,5 +18,5 @@ super + shift + p
 super + shift + v
 	pavucontrol
 
-super + l
+super + shift + l
 	qpdfview

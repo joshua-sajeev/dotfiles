@@ -8,6 +8,7 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.o.termguicolors =  true
 -- Enable mouse mode
 vim.opt.mouse = 'a'
 
@@ -57,6 +58,9 @@ vim.opt.scrolloff = 10
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+vim.keymap.set({'n','i'}, '<leader>pv', '<cmd>Explore<CR>')
+
 
 --Undotree
 vim.keymap.set('n','<leader>u','<cmd>UndotreeToggle<CR>')
