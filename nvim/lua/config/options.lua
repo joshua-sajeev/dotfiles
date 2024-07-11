@@ -1,5 +1,27 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+vim.g.have_nerd_font = true
+
+-- [[ Setting options ]]
+--Line Numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+vim.o.termguicolors =  true
+-- Enable mouse mode
+-- vim.opt.mouse = 'a'
+
+vim.opt.clipboard = 'unnamedplus'
+-- Tabstop
+vim.opt.tabstop = 4      -- Number of spaces that a <Tab> in the file counts for
+vim.opt.shiftwidth = 4   -- Number of spaces to use for each step of (auto)indent
+vim.opt.expandtab = true -- Convert tabs to spaces
+
+-- Enable break indent
+vim.opt.breakindent = true
+
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
@@ -65,3 +87,4 @@ vim.opt.autoindent = true
 vim.opt.smartindent = true
 
 vim.opt.completeopt = {"menu","menuone","noselect"}
+
