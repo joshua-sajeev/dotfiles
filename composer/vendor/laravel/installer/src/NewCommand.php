@@ -11,6 +11,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Process\Exception\ProcessStartFailedException;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 
@@ -88,10 +89,26 @@ class NewCommand extends Command
                 label: 'What is the name of your project?',
                 placeholder: 'E.g. example-app',
                 required: 'The project name is required.',
-                validate: fn ($value) => preg_match('/[^\pL\pN\-_.]/', $value) !== 0
-                    ? 'The name may only contain letters, numbers, dashes, underscores, and periods.'
-                    : null,
+                validate: function ($value) use ($input) {
+                    if (preg_match('/[^\pL\pN\-_.]/', $value) !== 0) {
+                        return 'The name may only contain letters, numbers, dashes, underscores, and periods.';
+                    }
+
+                    if ($input->getOption('force') !== true) {
+                        try {
+                            $this->verifyApplicationDoesntExist($this->getInstallationDirectory($value));
+                        } catch (RuntimeException $e) {
+                            return 'Application already exists.';
+                        }
+                    }
+                },
             ));
+        }
+
+        if ($input->getOption('force') !== true) {
+            $this->verifyApplicationDoesntExist(
+                $this->getInstallationDirectory($input->getArgument('name'))
+            );
         }
 
         if (! $input->getOption('breeze') && ! $input->getOption('jet')) {
@@ -143,7 +160,7 @@ class NewCommand extends Command
 
         $name = $input->getArgument('name');
 
-        $directory = $name !== '.' ? getcwd().'/'.$name : '.';
+        $directory = $this->getInstallationDirectory($name);
 
         $this->composer = new Composer(new Filesystem(), $directory);
 
@@ -158,9 +175,12 @@ class NewCommand extends Command
         }
 
         $composer = $this->findComposer();
+        $phpBinary = $this->phpBinary();
 
         $commands = [
-            $composer." create-project laravel/laravel \"$directory\" $version --remove-vcs --prefer-dist",
+            $composer." create-project laravel/laravel \"$directory\" $version --remove-vcs --prefer-dist --no-scripts",
+            $composer." run post-root-package-install -d \"$directory\"",
+            $phpBinary." \"$directory/artisan\" key:generate --ansi",
         ];
 
         if ($directory != '.' && $input->getOption('force')) {
@@ -464,15 +484,15 @@ class NewCommand extends Command
                 default: $defaultDatabase,
             ));
 
-            if ($input->getOption('database') !== 'sqlite') {
-                $migrate = confirm(
-                    label: 'Default database updated. Would you like to run the default database migrations?',
-                    default: true
-                );
-            }
+            $migrate = confirm(
+                label: $input->getOption('database') !== 'sqlite'
+                    ? 'Default database updated. Would you like to run the default database migrations?'
+                    : 'Would you like to run the default database migrations?',
+                default: true
+            );
         }
 
-        return [$input->getOption('database') ?? $defaultDatabase, $migrate ?? false];
+        return [$input->getOption('database') ?? $defaultDatabase, $migrate ?? $input->hasOption('database')];
     }
 
     /**
@@ -757,17 +777,7 @@ class NewCommand extends Command
      */
     protected function getTld()
     {
-        foreach (['herd', 'valet'] as $tool) {
-            $process = new Process([$tool, 'tld']);
-
-            $process->run();
-
-            if ($process->isSuccessful()) {
-                return trim($process->getOutput());
-            }
-        }
-
-        return 'test';
+        return $this->runOnValetOrHerd('tld') ?? 'test';
     }
 
     /**
@@ -789,19 +799,20 @@ class NewCommand extends Command
      */
     protected function isParked(string $directory)
     {
-        foreach (['herd', 'valet'] as $tool) {
-            $process = new Process([$tool, 'paths']);
+        $output = $this->runOnValetOrHerd('paths');
 
-            $process->run();
+        return $output !== false ? in_array(dirname($directory), json_decode($output)) : false;
+    }
 
-            if ($process->isSuccessful()) {
-                $output = json_decode(trim($process->getOutput()));
-
-                return in_array(dirname($directory), $output);
-            }
-        }
-
-        return false;
+    /**
+     * Get the installation directory.
+     *
+     * @param  string  $name
+     * @return string
+     */
+    protected function getInstallationDirectory(string $name)
+    {
+        return $name !== '.' ? getcwd().'/'.$name : '.';
     }
 
     /**
@@ -841,6 +852,30 @@ class NewCommand extends Command
         return $phpBinary !== false
             ? ProcessUtils::escapeArgument($phpBinary)
             : 'php';
+    }
+
+    /**
+     * Runs the given command on the "herd" or "valet" CLI.
+     *
+     * @param  string  $command
+     * @return string|bool
+     */
+    protected function runOnValetOrHerd(string $command)
+    {
+        foreach (['herd', 'valet'] as $tool) {
+            $process = new Process([$tool, $command, '-v']);
+
+            try {
+                $process->run();
+
+                if ($process->isSuccessful()) {
+                    return trim($process->getOutput());
+                }
+            } catch (ProcessStartFailedException) {
+            }
+        }
+
+        return false;
     }
 
     /**

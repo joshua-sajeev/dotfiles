@@ -522,17 +522,17 @@
         },
         {
             "name": "laravel/installer",
-            "version": "v5.8.0",
-            "version_normalized": "5.8.0.0",
+            "version": "v5.8.3",
+            "version_normalized": "5.8.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/installer.git",
-                "reference": "0802d02f9b5bc9be191b7dc95ce80d8de8b08931"
+                "reference": "34852d5deed3bd1933d22321eb7c1c7a3257b545"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/installer/zipball/0802d02f9b5bc9be191b7dc95ce80d8de8b08931",
-                "reference": "0802d02f9b5bc9be191b7dc95ce80d8de8b08931",
+                "url": "https://api.github.com/repos/laravel/installer/zipball/34852d5deed3bd1933d22321eb7c1c7a3257b545",
+                "reference": "34852d5deed3bd1933d22321eb7c1c7a3257b545",
                 "shasum": ""
             },
             "require": {
@@ -547,7 +547,7 @@
                 "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^10.4"
             },
-            "time": "2024-05-07T14:10:08+00:00",
+            "time": "2024-06-18T16:43:24+00:00",
             "bin": [
                 "bin/laravel"
             ],
@@ -574,7 +574,7 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/installer/issues",
-                "source": "https://github.com/laravel/installer/tree/v5.8.0"
+                "source": "https://github.com/laravel/installer/tree/v5.8.3"
             },
             "install-path": "../laravel/installer"
         },

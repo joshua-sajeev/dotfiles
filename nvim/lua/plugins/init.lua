@@ -1,8 +1,10 @@
 return {
+    { 'mattn/emmet-vim' },
+
     {
         'chentoast/marks.nvim',
-        config = function ()
-            require'marks'.setup {
+        config = function()
+            require 'marks'.setup {
                 -- whether to map keybinds or not. default true
                 default_mappings = true,
                 -- which builtin marks to show. default {}
@@ -11,8 +13,8 @@ return {
                 cyclic = true,
                 -- whether the shada file is updated after modifying uppercase marks. default false
                 force_write_shada = false,
-                -- how often (in ms) to redraw signs/recompute mark positions. 
-                -- higher values will have better performance but may cause visual lag, 
+                -- how often (in ms) to redraw signs/recompute mark positions.
+                -- higher values will have better performance but may cause visual lag,
                 -- while lower values may cause performance penalties. default 150.
                 refresh_interval = 250,
                 -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
@@ -20,7 +22,7 @@ return {
                 -- can be either a table with all/none of the keys, or a single number, in which case
                 -- the priority applies to all marks.
                 -- default 10.
-                sign_priority = { lower=10, upper=15, builtin=8, bookmark=20 },
+                sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
                 -- disables mark tracking for specific filetypes. default {}
                 excluded_filetypes = {},
                 -- disables mark tracking for specific buftypes. default {}
@@ -38,14 +40,13 @@ return {
                 },
                 mappings = {}
             }
-
         end
     },
     {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = function ()
+        config = function()
             local harpoon = require("harpoon")
 
             -- REQUIRED
@@ -62,10 +63,10 @@ return {
 
             -- Toggle previous & next buffers stored within Harpoon list
             vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
-            vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end) 
+            vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
         end
     },
-    {'jesseduffield/lazygit'},
+    { 'jesseduffield/lazygit' },
     {
         'windwp/nvim-autopairs',
         event = 'InsertEnter',
@@ -101,7 +102,7 @@ return {
             ---@diagnostic disable-next-line: missing-fields
             require('nvim-treesitter.configs').setup(opts)
             --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-            require'nvim-treesitter.configs'.setup {
+            require 'nvim-treesitter.configs'.setup {
                 incremental_selection = {
                     enable = true,
                     keymaps = {
@@ -115,11 +116,11 @@ return {
         end,
     },
 
-    {'nvim-treesitter/nvim-treesitter-context'},
+    { 'nvim-treesitter/nvim-treesitter-context' },
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
-        config = function ()
-            require'nvim-treesitter.configs'.setup {
+        config = function()
+            require 'nvim-treesitter.configs'.setup {
                 textobjects = {
                     select = {
                         enable = true,
@@ -147,7 +148,7 @@ return {
                         -- mapping query_strings to modes.
                         selection_modes = {
                             ['@parameter.outer'] = 'v', -- charwise
-                            ['@function.outer'] = 'V', -- linewise
+                            ['@function.outer'] = 'V',  -- linewise
                             ['@class.outer'] = '<c-v>', -- blockwise
                         },
                         -- If you set this to `true` (default is `false`) then any textobject is
@@ -167,7 +168,7 @@ return {
     },
     {
         'akinsho/toggleterm.nvim',
-        version = "*", 
+        version = "*",
         opts = {
             direction = 'float'
             --[[ things you want to change go here]]
@@ -189,15 +190,15 @@ return {
             },
         },
     },
-    { -- Useful plugin to show you pending keybinds.
+    {                       -- Useful plugin to show you pending keybinds.
         'folke/which-key.nvim',
         event = 'VimEnter', -- Sets the loading event to 'VimEnter'
         config = function() -- This is the function that runs, AFTER loading
             require('which-key').setup()
 
             -- Basic Stuff
-            require('which-key').register{
-                ['<leader>p'] = { name = '[P]roject' },  -- Optional: to group related keybindings under <leader>p
+            require('which-key').register {
+                ['<leader>p'] = { name = '[P]roject' }, -- Optional: to group related keybindings under <leader>p
             }
             -- Document existing key chains
             require('which-key').register {
@@ -211,7 +212,7 @@ return {
         end,
     },
 
-    {--- catppuccin theme ---
+    { --- catppuccin theme ---
         'catppuccin/nvim',
         name = "catppuccin",
         priority = 1000, -- Make sure to load this before all the other start plugins.

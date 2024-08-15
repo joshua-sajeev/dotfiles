@@ -22,38 +22,47 @@ M.config = function()
 			end,
 		},
 
+		-- Configure the window appearance
 		window = {
 			completion = cmp.config.window.bordered(),
 			documentation = cmp.config.window.bordered(),
 		},
-		
-		mapping = cmp.mapping.preset.insert({
+
+		-- Define key mappings
+		mapping = {
 			["<C-b>"] = cmp.mapping.scroll_docs(-4),
 			["<C-f>"] = cmp.mapping.scroll_docs(4),
 			["<C-y>"] = cmp.mapping.complete(),
 			["<C-e>"] = cmp.mapping.abort(),
-			["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-		}),
-		sources = cmp.config.sources({
+			["<CR>"] = cmp.mapping.confirm({ select = true }),
+			["<Tab>"] = cmp.mapping(function(fallback)
+				if vim.fn.pumvisible() == 1 then
+					vim.fn.feedkeys(t("<C-n>"), "n")
+				elseif require("luasnip").expand_or_jumpable() then
+					vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
+				else
+					fallback()
+				end
+			end, { "i", "s" }),
+		},
+
+		-- Define sources for completion
+		sources = {
 			{ name = "nvim_lsp" },
 			{ name = "nvim_lua" },
-			{ name = "luasnip" }, -- For luasnip users.
-			-- { name = "orgmode" },
-			}, {
-				{ name = "buffer" },
-				{ name = "path" },
-		}),
+			{ name = "luasnip" },
+			{ name = "emmet" }, -- Add Emmet as a source
+		},
 	})
 
 	cmp.setup.cmdline(":", {
 		mapping = cmp.mapping.preset.cmdline(),
 		sources = cmp.config.sources({
 			{ name = "path" },
-			}, {
-				{ name = "cmdline" },
+		}, {
+			{ name = "cmdline" },
 		}),
 	})
 end
 
 return M
-

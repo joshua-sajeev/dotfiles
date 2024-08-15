@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '70c850d7468a7db95f0a4cc0d7a69eeb955f862e',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '70c850d7468a7db95f0a4cc0d7a69eeb955f862e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -92,9 +92,9 @@
             'dev_requirement' => false,
         ),
         'laravel/installer' => array(
-            'pretty_version' => 'v5.8.0',
-            'version' => '5.8.0.0',
-            'reference' => '0802d02f9b5bc9be191b7dc95ce80d8de8b08931',
+            'pretty_version' => 'v5.8.3',
+            'version' => '5.8.3.0',
+            'reference' => '34852d5deed3bd1933d22321eb7c1c7a3257b545',
             'type' => 'library',
             'install_path' => __DIR__ . '/../laravel/installer',
             'aliases' => array(),
