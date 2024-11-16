@@ -7,8 +7,11 @@ export NVM_DIR="$HOME/.nvm"
 set -g fish_greeting
 
 
-
+if not pgrep startx > /dev/null
+    startx
+end
 # Created by `pipx` on 2024-07-22 07:44:06
 set PATH $PATH /home/joshua/.local/bin
+set -U fish_user_paths (go env GOPATH)/bin $fish_user_paths
 
-set -x PGADMIN4_SRC ~/void-packages/pgadmin4-8.9/
+
