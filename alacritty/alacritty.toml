@@ -4,13 +4,13 @@ term = "xterm-256color"
 opacity = 0.7
 blur = true
 [font]
-normal = { family = "CaskaydiaMono Nerd Font", style = "Regular" }
+normal = { family = "JetBrains Mono NL", style = "Regular" }
 bold = { family = "CaskaydiaMono Nerd Font", style = "Bold" }
 italic = { family = "CaskaydiaMono Nerd Font", style = "Italic" }
 # Default colors
 [colors.primary]
-background =  '#0d0f18'
-foreground =  '#fffaf3'
+background = '#0d0f18'
+foreground = '#fffaf3'
 
 # Cursor colors
 [colors.cursor]
@@ -19,27 +19,27 @@ cursor = '#FF261E'
 
 # Normal colors
 [colors.normal]
-black   = '#0d0d0d'
-red     = '#FF301B'
-green   = '#A0E521'
-yellow  = '#FFC620'
-blue    = '#1BA6FA'
+black = '#0d0d0d'
+red = '#FF301B'
+green = '#A0E521'
+yellow = '#FFC620'
+blue = '#1BA6FA'
 magenta = '#8763B8'
-cyan    = '#21DEEF'
-white   = '#EBEBEB'
+cyan = '#21DEEF'
+white = '#EBEBEB'
 
 # Bright colors
 [colors.bright]
-black   = '#6D7070'
-red     = '#FF4352'
-green   = '#B8E466'
-yellow  = '#FFD750'
-blue    = '#1BA6FA'
+black = '#6D7070'
+red = '#FF4352'
+green = '#B8E466'
+yellow = '#FFD750'
+blue = '#1BA6FA'
 magenta = '#A578EA'
-cyan    = '#73FBF1'
-white   = '#FEFEF8'
+cyan = '#73FBF1'
+white = '#FEFEF8'
 
 [keyboard]
 bindings = [
- { key = "Return", mods = "Super|Shift", action = "CreateNewWindow" },
+  { key = "Return", mods = "Super|Shift", action = "CreateNewWindow" },
 ]
