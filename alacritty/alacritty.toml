@@ -4,9 +4,9 @@ term = "xterm-256color"
 opacity = 0.7
 blur = true
 [font]
-normal = { family = "JetBrains Mono NL", style = "Regular" }
-bold = { family = "CaskaydiaMono Nerd Font", style = "Bold" }
-italic = { family = "CaskaydiaMono Nerd Font", style = "Italic" }
+normal = { family = "JetBrainsMonoNL", style = "Regular" }
+bold = { family = "JetBrainsMonoNL", style = "Bold" }
+italic = { family = "JetBrainsMonoNL", style = "Italic" }
 # Default colors
 [colors.primary]
 background = '#0d0f18'

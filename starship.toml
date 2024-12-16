@@ -1,0 +1,12 @@
+ ## ~/.config/starship.toml
+
+[git_status]
+format = '[\($status$ahead_behind\)]'
+
+[time]
+format = "🕰️ [$time]"
+
+[custom.took]
+command = "echo 'took 9m7s'"
+format = "via $output"
+ Starship prompt
