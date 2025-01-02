@@ -1,5 +1,16 @@
 return {
 	{
+		"williamboman/mason.nvim",
+		opts = {}
+	},
+	{
+		'rmagatti/goto-preview',
+		config = function()
+			require('goto-preview').setup {}
+			vim.keymap.set("n", "gp", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", { noremap = true })
+		end
+	},
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{
@@ -12,7 +23,14 @@ return {
 			},
 		},
 		config = function()
-			require("lspconfig").lua_ls.setup {}
+			local capabilities = require('cmp_nvim_lsp').default_capabilities()
+			local lspconfig = require('lspconfig')
+
+			lspconfig.lua_ls.setup { capabilities = capabilities }
+
+			lspconfig.pyright.setup { capabilities = capabilities }
+
+			lspconfig.gopls.setup { capabilities = capabilities }
 
 			vim.api.nvim_create_autocmd('LspAttach', {
 				callback = function(args)
@@ -31,5 +49,5 @@ return {
 				end,
 			})
 		end,
-	}
+	},
 }

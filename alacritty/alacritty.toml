@@ -7,6 +7,7 @@ blur = true
 normal = { family = "JetBrainsMonoNL", style = "Regular" }
 bold = { family = "JetBrainsMonoNL", style = "Bold" }
 italic = { family = "JetBrainsMonoNL", style = "Italic" }
+size = 9
 # Default colors
 [colors.primary]
 background = '#0d0f18'
