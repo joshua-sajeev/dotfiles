@@ -9,8 +9,6 @@ if true then return {} end
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
-  -- add gruvbox
-  { "ellisonleao/gruvbox.nvim" },
 
   -- Configure LazyVim to load gruvbox
   {
@@ -193,5 +191,22 @@ return {
         "flake8",
       },
     },
+  },
+  {
+    "Saghen/blink.cmp",
+    config = function()
+      require("blink.cmp").setup({
+        sources = {
+          default = { "go", "python", "lsp", "path", "snippets", "buffer", "markdown" },
+          providers = {
+            markdown = {
+              name = "RenderMarkdown",
+              module = "render-markdown.integ.blink",
+              fallbacks = { "lsp" },
+            },
+          },
+        },
+      })
+    end,
   },
 }

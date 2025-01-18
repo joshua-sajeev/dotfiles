@@ -2,6 +2,7 @@
 
 # Start status bar
 slstatus &
+picom --config ~/.config/picom/picom.conf &
 
 # Start pipewire
 pipewire &

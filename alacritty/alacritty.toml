@@ -1,8 +1,7 @@
 [env]
 term = "xterm-256color"
 [window]
-opacity = 0.7
-blur = true
+opacity = 0.8
 [font]
 normal = { family = "JetBrainsMonoNL", style = "Regular" }
 bold = { family = "JetBrainsMonoNL", style = "Bold" }
