@@ -4,11 +4,12 @@ end
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin $PATH"
 export NVM_DIR="$HOME/.nvm"
+export DOCKER_BUILDKIT="1"
 set -g fish_greeting
 starship init fish | source
 
 #if not pgrep startx >/dev/null
-#    startx
+#    s
 #end
 # Created by `pipx` on 2024-07-22 07:44:06
 set PATH $PATH /home/joshua/.local/bin
@@ -20,3 +21,4 @@ set PATH $GOPATH/bin $PATH
 
 set -x PATH /usr/local/pgsql/bin $PATH
 set -Ux LD_LIBRARY_PATH /usr/local/pgsql/lib $LD_LIBRARY_PATH
+set -x PGDATA /home/postgres/
