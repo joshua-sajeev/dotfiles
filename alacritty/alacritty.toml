@@ -3,9 +3,6 @@ term = "xterm-256color"
 [window]
 opacity = 0.8
 [font]
-normal = { family = "JetBrainsMonoNL", style = "Regular" }
-bold = { family = "JetBrainsMonoNL", style = "Bold" }
-italic = { family = "JetBrainsMonoNL", style = "Italic" }
 size = 11
 # Default colors
 [colors.primary]
