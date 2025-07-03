@@ -87,6 +87,12 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *firefox[]  = { "firefox", NULL };
 
+static const char *flameshot[] = {"flameshot", "gui", NULL};
+static const char *increasevolume[] = {"amixer", "sset", "Master", "5%+", NULL};
+static const char *decreasevolume[] = {"amixer", "sset", "Master", "5%-", NULL};
+static const char *togglevolume[] = {"amixer", "sset", "Master", "toggle", NULL};
+static const char *inclight[] = {"brightnessctl", "set", "5%+", NULL};
+static const char *declight[] = {"brightnessctl", "set", "5%-", NULL};
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = firefox } },
@@ -147,6 +153,14 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+
+  // function keys and others 
+  {MODKEY,                        XK_g,      spawn,          {.v = flameshot}},
+  {0, XF86XK_AudioRaiseVolume, spawn, {.v = increasevolume}},
+  {0, XF86XK_AudioLowerVolume, spawn, {.v = decreasevolume}},
+  {0, XF86XK_AudioMute, spawn, {.v = togglevolume}},
+  {0, XF86XK_MonBrightnessUp, spawn, {.v = inclight}},
+  {0, XF86XK_MonBrightnessDown, spawn, {.v = declight}},
 };
 
 /* button definitions */
