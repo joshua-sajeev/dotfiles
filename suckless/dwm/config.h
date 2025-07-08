@@ -93,6 +93,8 @@ static const char *decreasevolume[] = {"amixer", "sset", "Master", "5%-", NULL};
 static const char *togglevolume[] = {"amixer", "sset", "Master", "toggle", NULL};
 static const char *inclight[] = {"brightnessctl", "set", "5%+", NULL};
 static const char *declight[] = {"brightnessctl", "set", "5%-", NULL};
+static const char *file_manager[] = {"thunar",  NULL};
+
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = firefox } },
@@ -130,9 +132,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	// { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
- 	{ MODKEY|ControlMask,           XK_comma,  cyclelayout,    {.i = -1 } },
+  { MODKEY|ControlMask,           XK_comma,  cyclelayout,    {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_f,      fullscreen,     {0} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
@@ -159,8 +161,12 @@ static const Key keys[] = {
   {0, XF86XK_AudioRaiseVolume, spawn, {.v = increasevolume}},
   {0, XF86XK_AudioLowerVolume, spawn, {.v = decreasevolume}},
   {0, XF86XK_AudioMute, spawn, {.v = togglevolume}},
+  {0,XK_Menu , spawn, {.v = inclight}},
+  {0,XF86XK_Calculator, spawn, {.v = declight}},
   {0, XF86XK_MonBrightnessUp, spawn, {.v = inclight}},
   {0, XF86XK_MonBrightnessDown, spawn, {.v = declight}},
+	{ MODKEY,             XK_f,      spawn,   {.v = file_manager} },
+
 };
 
 /* button definitions */
