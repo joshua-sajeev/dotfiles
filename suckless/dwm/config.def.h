@@ -8,7 +8,7 @@ static const unsigned int gappiv    = 10;       /* vert inner gap between window
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
- 
+
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;    /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -73,10 +73,10 @@ static const Layout layouts[] = {
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -86,6 +86,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *firefox[]  = { "firefox", NULL };
+static const char *obsidian[]  = { "obsidian", NULL };
 
 static const char *flameshot[] = {"flameshot", "gui", NULL};
 static const char *increasevolume[] = {"amixer", "sset", "Master", "5%+", NULL};
@@ -134,7 +135,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	// { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-  { MODKEY|ControlMask,           XK_comma,  cyclelayout,    {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_comma,  cyclelayout,    {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_f,      fullscreen,     {0} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
@@ -155,18 +156,19 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-
-  // function keys and others 
-  {MODKEY,                        XK_g,      spawn,          {.v = flameshot}},
-  {0, XF86XK_AudioRaiseVolume, spawn, {.v = increasevolume}},
-  {0, XF86XK_AudioLowerVolume, spawn, {.v = decreasevolume}},
-  {0, XF86XK_AudioMute, spawn, {.v = togglevolume}},
-  {0,XK_Menu , spawn, {.v = inclight}},
-  {0,XF86XK_Calculator, spawn, {.v = declight}},
-  {0, XF86XK_MonBrightnessUp, spawn, {.v = inclight}},
-  {0, XF86XK_MonBrightnessDown, spawn, {.v = declight}},
+	
+	// function keys and others 
+	{MODKEY,                        XK_g,      spawn,          {.v = flameshot}},
+	{0, XF86XK_AudioRaiseVolume, spawn, {.v = increasevolume}},
+	{0, XF86XK_AudioLowerVolume, spawn, {.v = decreasevolume}},
+	{0, XF86XK_AudioMute, spawn, {.v = togglevolume}},
+	{0,XK_Menu , spawn, {.v = inclight}},
+	{0,XF86XK_Calculator, spawn, {.v = declight}},
+	{0, XF86XK_MonBrightnessUp, spawn, {.v = inclight}},
+	{0, XF86XK_MonBrightnessDown, spawn, {.v = declight}},
 	{ MODKEY,             XK_f,      spawn,   {.v = file_manager} },
-
+	{ MODKEY,             XK_o,      spawn,   {.v = obsidian} },
+	
 };
 
 /* button definitions */

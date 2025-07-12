@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Prompt for the password securely without showing input
+read -s -p "Enter gocryptfs password: " password
+echo  # Add a newline after the password input
+
+if [ -z "$password" ]; then
+    echo "No password entered. Exiting."
+    exit 1
+fi
+
+# Mount the folder using the password (adjust paths as needed)
+echo "$password" | gocryptfs ~/Obsidian/cipher ~/Obsidian/Journal
+
+# Open Obsidian (change path to Obsidian app or executable)
+obsidian &
+
+# Wait for Obsidian to close (or wait a few seconds to ensure it’s done)
+wait $!
+
+# Unmount the encrypted folder after Obsidian is closed
+fusermount -u ~/Obsidian/Journal
+echo "Encrypted folder unmounted."
+
+
