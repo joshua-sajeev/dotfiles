@@ -95,6 +95,7 @@ static const char *togglevolume[] = {"amixer", "sset", "Master", "toggle", NULL}
 static const char *inclight[] = {"brightnessctl", "set", "5%+", NULL};
 static const char *declight[] = {"brightnessctl", "set", "5%-", NULL};
 static const char *file_manager[] = {"thunar",  NULL};
+static const char *lock[] = { "i3lock", "-i", "/home/joshua/.dwm/lock.png", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -168,7 +169,7 @@ static const Key keys[] = {
 	{0, XF86XK_MonBrightnessDown, spawn, {.v = declight}},
 	{ MODKEY,             XK_f,      spawn,   {.v = file_manager} },
 	{ MODKEY,             XK_o,      spawn,   {.v = obsidian} },
-	
+	{ MODKEY,             XK_l,      spawn,   {.v = lock} },
 };
 
 /* button definitions */
