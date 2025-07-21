@@ -8,7 +8,7 @@ if [ -z "$password" ]; then
   exit 1
 fi
 
-echo "$password" | gocryptfs -nosyslog ~/Journal/cipher ~/Journal/Journal
+echo "$password" | gocryptfs -nosyslog ~/Journal/cipher ~/Journal/Decrypted/
 
 # Launch Obsidian in background
 obsidian ~/Journal/ &
@@ -19,5 +19,5 @@ while pgrep -x "obsidian" >/dev/null; do
   sleep 2
 done
 
-fusermount -u ~/Journal/Journal
+fusermount -u ~/Journal/Decrypted/
 echo "Encrypted folder unmounted."
