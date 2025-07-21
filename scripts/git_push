@@ -1,0 +1,41 @@
+#!/bin/bash
+# Auto push multiple Git repos to GitHub (only once per day)
+
+# Repositories to check
+REPOS=(
+  "$HOME/Journal"
+  "$HOME/dotfiles"
+  "$HOME/Second-Brain"
+)
+
+BRANCH="main" # change if needed
+GIT=/usr/bin/git
+DATE="$(date '+%Y-%m-%d %H:%M:%S')"
+TODAY="$(date '+%Y-%m-%d')"
+
+for REPO in "${REPOS[@]}"; do
+  echo "[$(date)] Checking $REPO ..."
+
+  if [ -d "$REPO/.git" ]; then
+    cd "$REPO" || continue
+
+    # Get date of last commit in this repo
+    LAST_COMMIT_DATE="$($GIT log -1 --format=%cd --date=format:'%Y-%m-%d' 2>/dev/null)"
+
+    if [[ "$LAST_COMMIT_DATE" == "$TODAY" ]]; then
+      echo "[$(date)] Already committed today in $REPO. Skipping."
+      continue
+    fi
+
+    if [[ -n $($GIT status --porcelain) ]]; then
+      echo "[$(date)] Changes detected in $REPO. Pushing..."
+      $GIT add .
+      $GIT commit -m "Daily auto update: $DATE"
+      $GIT push origin "$BRANCH"
+    else
+      echo "[$(date)] No changes in $REPO. Skipping push."
+    fi
+  else
+    echo "[$(date)] Skipping $REPO (not a Git repo)."
+  fi
+done

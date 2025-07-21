@@ -39,7 +39,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "google-chrome-stable",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "qutebrowser",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -85,7 +86,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
-static const char *firefox[]  = { "firefox", NULL };
+static const char *browser[]  = { "google-chrome-stable", NULL };
 static const char *obsidian[]  = { "obsidian", NULL };
 
 static const char *flameshot[] = {"flameshot", "gui", NULL};
@@ -99,7 +100,7 @@ static const char *lock[] = { "i3lock", "-i", "/home/joshua/.dwm/lock.png", NULL
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = firefox } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = browser } },
 	{ MODKEY,                       XK_a,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
