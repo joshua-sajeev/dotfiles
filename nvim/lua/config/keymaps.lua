@@ -8,3 +8,4 @@ keymap.set("n", "<M-j>", "<cmd>cnext<CR>", { desc = "Next Quickfix item" })
 -- Undo tree
 keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "UndotreeToggle" })
 keymap.set("n", "<leader><Tab>d", "<cmd>bdelete<CR>", { desc = "Close the buffer" })
+keymap.set("n", "<leader>gtf", "<cmd>GoTestFunc<CR>", { desc = "Test go func" })
