@@ -160,7 +160,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	
 	// function keys and others 
-	{MODKEY,                        XK_g,      spawn,          {.v = flameshot}},
+	{MODKEY|ShiftMask,              XK_s,      spawn,          {.v = flameshot}},
 	{0, XF86XK_AudioRaiseVolume, spawn, {.v = increasevolume}},
 	{0, XF86XK_AudioLowerVolume, spawn, {.v = decreasevolume}},
 	{0, XF86XK_AudioMute, spawn, {.v = togglevolume}},
