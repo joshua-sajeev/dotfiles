@@ -13,3 +13,26 @@ keymap.set("n", "<leader>tt", function()
   vim.cmd("cgetexpr system('go test -count=1 ./... 2>&1')")
   vim.cmd("copen")
 end, { desc = "Run Go tests and open quickfix" })
+local dap = require("dap")
+local dapui = require("dapui")
+
+-- Toggle breakpoint
+vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint)
+
+-- Start / Continue debugging
+vim.keymap.set("n", "<leader>dc", dap.continue)
+
+-- Step over
+vim.keymap.set("n", "<leader>do", dap.step_over)
+
+-- Step into
+vim.keymap.set("n", "<leader>di", dap.step_into)
+
+-- Step out
+vim.keymap.set("n", "<leader>dO", dap.step_out)
+
+-- Open UI
+vim.keymap.set("n", "<leader>du", dapui.toggle)
+
+-- Terminate
+vim.keymap.set("n", "<leader>dt", dap.terminate)
