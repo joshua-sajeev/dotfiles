@@ -6,7 +6,7 @@ return {
       "rcarriga/nvim-dap-ui",
       "theHamsta/nvim-dap-virtual-text",
       "nvim-neotest/nvim-nio",
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
     },
     config = function()
       local dap = require("dap")
@@ -95,9 +95,15 @@ return {
         require("telescope").extensions.dap.list_breakpoints({})
       end)
       vim.keymap.set("n", "<space>du", ui.toggle) -- toggle the whole UI
-      vim.keymap.set("n", "<space>ds", ui.float_element("scopes")) -- float scopes
-      vim.keymap.set("n", "<space>dr", ui.float_element("repl")) -- float REPL
-      vim.keymap.set("n", "<space>dw", ui.float_element("watches")) -- float watches
+      vim.keymap.set("n", "<space>ds", function()
+        ui.float_element("scopes")
+      end)
+      vim.keymap.set("n", "<space>dr", function()
+        ui.float_element("repl")
+      end)
+      vim.keymap.set("n", "<space>dw", function()
+        ui.float_element("watches")
+      end)
       dap.listeners.before.attach.dapui_config = function()
         ui.open()
       end
