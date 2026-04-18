@@ -192,3 +192,7 @@ c.colors.webpage.darkmode.contrast = 0.2
 #   - smart: Apply dark mode based on image content. Not available with Qt 5.15.0.
 #   - smart-simple: On QtWebEngine 6.6, use a simpler algorithm for smart mode (based on numbers of colors and transparency), rather than an ML-based model. Same as 'smart' on older QtWebEnigne versions.
 c.colors.webpage.darkmode.policy.images = 'never'
+c.url.searchengines = {
+    'DEFAULT': 'https://www.google.com/search?q={}',
+    'yt': 'https://www.youtube.com/results?search_query={}'
+}
