@@ -3,14 +3,14 @@
 /* appearance */
 static const unsigned int borderpx = 1; /* border pixel of windows */
 static const unsigned int snap = 32;    /* snap pixel */
-static const unsigned int gappih = 20;  /* horiz inner gap between windows */
+static const unsigned int gappih = 10;  /* horiz inner gap between windows */
 static const unsigned int gappiv = 10;  /* vert inner gap between windows */
 static const unsigned int gappoh =
-    10; /* horiz outer gap between windows and screen edge */
+    5; /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov =
-    30; /* vert outer gap between windows and screen edge */
+    20; /* vert outer gap between windows and screen edge */
 static int smartgaps =
-    0; /* 1 means no outer gap when there is only one window */
+    1; /* 1 means no outer gap when there is only one window */
 
 static const unsigned int systraypinning =
     0; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor
@@ -103,7 +103,8 @@ static const char *dmenucmd[] = {
     "dmenu_run", "-m",      dmenumon, "-fn",    dmenufont, "-nb",     col_gray1,
     "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
 static const char *termcmd[] = {"alacritty", NULL};
-static const char *browser[] = {"firefox", NULL};
+static const char *browser[] = {"qutebrowser", NULL};
+static const char *browser2[] = {"falkon", NULL};
 static const char *obsidian[] = {"obsidian", NULL};
 
 static const char *flameshot[] = {"flameshot", "gui", NULL};
@@ -120,6 +121,7 @@ static const char *lock[] = {"i3lock", "-i", "/home/joshua/.dwm/lock.png",
 static const Key keys[] = {
     /* modifier                     key        function        argument */
     {MODKEY, XK_p, spawn, {.v = browser}},
+    {MODKEY | ShiftMask, XK_p, spawn, {.v = browser2}},
     {MODKEY, XK_a, spawn, {.v = dmenucmd}},
     {MODKEY, XK_Return, spawn, {.v = termcmd}},
     {MODKEY, XK_b, togglebar, {0}},
@@ -183,7 +185,7 @@ static const Key keys[] = {
     {0, XF86XK_MonBrightnessDown, spawn, {.v = declight}},
     {MODKEY, XK_f, spawn, {.v = file_manager}},
     {MODKEY, XK_o, spawn, {.v = obsidian}},
-    {MODKEY, XK_l, spawn, {.v = lock}},
+    {MODKEY | ShiftMask, XK_l, spawn, {.v = lock}},
 };
 
 /* button definitions */

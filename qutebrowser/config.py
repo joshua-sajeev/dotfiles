@@ -13,15 +13,6 @@
 # Change the argument to True to still load settings configured via autoconfig.yml
 config.load_autoconfig(False)
 
-# Always restore open sites when qutebrowser is reopened. Without this
-# option set, `:wq` (`:quit --save`) needs to be used to save open tabs
-# (and restore them), while quitting qutebrowser in any other way will
-# not save/restore the session. By default, this will save to the
-# session which was last loaded. This behavior can be customized via the
-# `session.default_name` setting.
-# Type: Bool
-c.auto_save.session = True
-
 # Which cookies to accept. With QtWebEngine, this setting also controls
 # other features with tracking capabilities similar to those of cookies;
 # including IndexedDB, DOM storage, filesystem API, service workers, and
@@ -90,7 +81,24 @@ config.set('content.headers.accept_language', '', 'https://matchmaker.krunker.io
 # increased compatibility.  Note that the value read from JavaScript is
 # always the global value.
 # Type: FormatString
-config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:136.0) Gecko/20100101 Firefox/136.0', 'https://accounts.google.com/*')
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:149.0) Gecko/20100101 Firefox/149.0', 'https://accounts.google.com/*')
+
+# User agent to send.  The following placeholders are defined:  *
+# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
+# The underlying WebKit version (set to a fixed value   with
+# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
+# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
+# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
+# QtWebEngine. * `{upstream_browser_version}`: The corresponding
+# Safari/Chrome version. * `{upstream_browser_version_short}`: The
+# corresponding Safari/Chrome   version, but only with its major
+# version. * `{qutebrowser_version}`: The currently running qutebrowser
+# version.  The default value is equal to the default user agent of
+# QtWebKit/QtWebEngine, but with the `QtWebEngine/...` part removed for
+# increased compatibility.  Note that the value read from JavaScript is
+# always the global value.
+# Type: FormatString
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/{webkit_version} (KHTML, like Gecko) {qt_key}/{qt_version} {upstream_browser_key}/{upstream_browser_version_short} Safari/{webkit_version}', 'https://gitlab.gnome.org/*')
 
 # Load images automatically in web pages.
 # Type: Bool
@@ -124,40 +132,6 @@ config.set('content.local_content_can_access_remote_urls', True, 'file:///home/j
 # Type: Bool
 config.set('content.local_content_can_access_file_urls', False, 'file:///home/joshua/.local/share/qutebrowser/userscripts/*')
 
-# Allow websites to show notifications.
-# Type: BoolAsk
-# Valid values:
-#   - true
-#   - false
-#   - ask
-config.set('content.notifications.enabled', True, 'https://www.youtube.com')
-
-# Allow websites to register protocol handlers via
-# `navigator.registerProtocolHandler`.
-# Type: BoolAsk
-# Valid values:
-#   - true
-#   - false
-#   - ask
-config.set('content.register_protocol_handler', True, 'https://mail.google.com?extsrc=mailto&url=%25s')
-
-# Background color for webpages if unset (or empty to use the theme's
-# color).
-# Type: QtColor
-c.colors.webpage.bg = 'white'
-
-# Value to use for `prefers-color-scheme:` for websites. The "light"
-# value is only available with QtWebEngine 5.15.2+. On older versions,
-# it is the same as "auto". The "auto" value is broken on QtWebEngine
-# 5.15.2 due to a Qt bug. There, it will fall back to "light"
-# unconditionally.
-# Type: String
-# Valid values:
-#   - auto: Use the system-wide color scheme setting.
-#   - light: Force a light theme.
-#   - dark: Force a dark theme.
-c.colors.webpage.preferred_color_scheme = 'dark'
-
 # Render all web contents using a dark theme. On QtWebEngine < 6.7, this
 # setting requires a restart and does not support URL patterns, only the
 # global setting is applied. Example configurations from Chromium's
@@ -168,31 +142,16 @@ c.colors.webpage.preferred_color_scheme = 'dark'
 # Type: Bool
 c.colors.webpage.darkmode.enabled = True
 
-# Which algorithm to use for modifying how colors are rendered with dark
-# mode. The `lightness-cielab` value was added with QtWebEngine 5.14 and
-# is treated like `lightness-hsl` with older QtWebEngine versions.
-# Type: String
-# Valid values:
-#   - lightness-cielab: Modify colors by converting them to CIELAB color space and inverting the L value. Not available with Qt < 5.14.
-#   - lightness-hsl: Modify colors by converting them to the HSL color space and inverting the lightness (i.e. the "L" in HSL).
-#   - brightness-rgb: Modify colors by subtracting each of r, g, and b from their maximum value.
-c.colors.webpage.darkmode.algorithm = 'lightness-hsl'
 
-# Contrast for dark mode. This only has an effect when
-# `colors.webpage.darkmode.algorithm` is set to `lightness-hsl` or
-# `brightness-rgb`.
-# Type: Float
-c.colors.webpage.darkmode.contrast = 0.2
+# Go to previous tab with Shift+J
+config.bind('J', 'tab-prev')
 
-# Which images to apply dark mode to.
-# Type: String
-# Valid values:
-#   - always: Apply dark mode filter to all images.
-#   - never: Never apply dark mode filter to any images.
-#   - smart: Apply dark mode based on image content. Not available with Qt 5.15.0.
-#   - smart-simple: On QtWebEngine 6.6, use a simpler algorithm for smart mode (based on numbers of colors and transparency), rather than an ML-based model. Same as 'smart' on older QtWebEnigne versions.
-c.colors.webpage.darkmode.policy.images = 'never'
+# Go to next tab with Shift+K
+config.bind('K', 'tab-next')
+
+# Open mailto links with your system mail client (no prompt)
+
 c.url.searchengines = {
-    'DEFAULT': 'https://www.google.com/search?q={}',
-    'yt': 'https://www.youtube.com/results?search_query={}'
+    "DEFAULT": "https://www.google.com/search?q={}",
+    "yt": "https://www.youtube.com/results?search_query={}"
 }
