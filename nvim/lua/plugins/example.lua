@@ -9,6 +9,9 @@ if true then return {} end
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
+  { import = "lazyvim.plugins.extras.lang.go" },
+  { import = "lazyvim.plugins.extras.dap.core" },
+  { import = "lazyvim.plugins.extras.editor.outline" },
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
 
@@ -184,7 +187,7 @@ return {
 
   -- add any tools you want to have installed below
   {
-    "mason-org/mason.nvim",
+    "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
         "stylua",
@@ -193,6 +196,5 @@ return {
         "flake8",
       },
     },
-    autoformat = false,
   },
 }
