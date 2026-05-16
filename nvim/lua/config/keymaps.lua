@@ -13,7 +13,11 @@ keymap.set("n", "<leader>tt", function()
   vim.cmd("cgetexpr system('go test -count=1 ./... 2>&1')")
   vim.cmd("copen")
 end, { desc = "Run Go tests and open quickfix" })
--- local dap = require("dap")
+
+vim.keymap.set("n", "<leader>a", function()
+  vim.cmd("wall")
+  vim.cmd("!go mod tidy")
+end, { desc = "Save all + go mod tidy" })
 -- local dapui = require("dapui")
 --
 -- -- Toggle breakpoint

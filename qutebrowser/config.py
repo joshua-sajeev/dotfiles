@@ -140,6 +140,7 @@ config.set('content.local_content_can_access_file_urls', False, 'file:///home/jo
 # `colors.webpage.darkmode.policy.images` to `never`.  - "With selective
 # image inversion": qutebrowser default settings.
 # Type: Bool
+# c.colors.webpage.darkmode.enabled = False
 c.colors.webpage.darkmode.enabled = True
 
 
