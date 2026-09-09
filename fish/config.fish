@@ -14,3 +14,4 @@ set -gx PATH $HOME/.local/bin $PATH
 set -gx GOPATH $HOME/go
 set -gx GOBIN $GOPATH/bin
 set -gx PATH $PATH $GOBIN
+direnv hook fish | source

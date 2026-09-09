@@ -40,8 +40,3 @@ white = '#FEFEF8'
 bindings = [
   { key = "Return", mods = "Super|Shift", action = "CreateNewWindow" },
 ]
-
-# [[keyboard.bindings]]
-# key = "Return"
-# mods = "Shift"
-# chars = "\u001B\r"
