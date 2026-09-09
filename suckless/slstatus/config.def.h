@@ -17,10 +17,14 @@ static const char unknown_str[] = "n/a";
  */
 
 static const struct arg args[] = {
-	{ datetime,      "%s                                                                             ",               "%a %d %b  %I:%M %p" },
-	{ cpu_perc,      " 󰍛  %s%% | ",              NULL },
-	{ ram_perc,      "   %s%% | ",              NULL },
-	{ run_command,   " 󰃠  %s%% | ",              "brightnessctl -m | cut -d, -f4 | tr -d '%'" },
-	{ run_command,   " 󰕾  %s%% |",               "amixer get Master | awk -F'[][]' 'END{print $2}' | tr -d '%'" },
-	{ battery_perc,  " 󰁹  %s%%  ",              "BAT0" },
+    {datetime,
+     "%s                                                                       "
+     "      ",
+     "%a %d %b  %I:%M %p"},
+    {cpu_perc, " 󰍛  %s%% | ", NULL},
+    {ram_perc, "   %s%% | ", NULL},
+    {run_command, " 󰃠  %s%% | ",
+     "brightnessctl -m | cut -d, -f4 | tr -d '%'"},
+    {run_command, " 󰕾  %s%% ",
+     "amixer get Master | awk -F'[][]' 'END{print $2}' | tr -d '%'"},
 };
